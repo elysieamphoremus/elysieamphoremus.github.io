@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>崩坏星穹铁道抽卡重开模拟器</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="game.js" defer></script>
+</head>
+<body>
+  <div class="container">
+    <!-- 游戏标题 -->
+    <div class="title">崩坏星穹铁道抽卡重开模拟器</div>
+    
+    <!-- 游戏主界面 -->
+    <div id="game-container">
+      <!-- 开始界面 -->
+      <div id="start-screen" class="screen active">
+        <div class="story-intro">
+          <p>一觉醒来，你回到了星铁3.0版本开服……这一世，你誓将夺回属于你的一切！组建你的战舰！</p>
+        </div>
+        <button id="start-button" class="primary-button">开始游戏</button>
+        <div class="qq-group-info">
+          <p style="font-size: 0.9rem; color: #999; text-align: center; margin-top: 30px;">交流qq群：585498511</p>
+        </div>
+      </div>
+
+      <!-- 游戏主界面 -->
+      <div id="main-screen" class="screen">
+        <!-- 版本信息 -->
+        <div class="version-info">
+          <h2>版本: <span id="current-version">3.0</span></h2>
+          <p>专票: <span id="tickets-count">700</span></p>
+        </div>
+
+        <!-- 抽取区域 -->
+        <div class="gacha-section">
+          <h3>角色抽取</h3>
+          <div class="up-characters">
+            <h4>本期UP角色</h4>
+            <div id="up-character-list" class="character-list"></div>
+          </div>
+          <div id="pull-result" class="pull-result"></div>
+          <div class="pity-info">
+            距离上次出金: <span id="pity-counter">0</span> 抽
+          </div>
+          <div class="gacha-buttons">
+            <button id="single-pull" class="pull-button">单抽 (1)</button>
+            <button id="ten-pulls" class="pull-button">10连抽 (10)</button>
+          </div>
+        </div>
+
+        <!-- 温馨提示卡片 -->
+        <div id="warmTipsCard" class="tip-card">
+          <div class="tip-card-title">
+            温馨提示
+            <button id="refresh-warm-tips" class="tip-card-button">换一批</button>
+          </div>
+          <div id="warmTipsContent" class="tip-card-content">
+            <!-- 提示内容将在这里动态生成 -->
+          </div>
+        </div>
+
+        <!-- 所有内鬼提示卡片 -->
+        <div id="allLeakerTipsCard" class="all-leaker-tips-card">
+          <div class="all-leaker-tips-title">所有内鬼提示</div>
+          <div id="allLeakerTipsContent">
+            <!-- 内鬼提示内容将在这里动态生成 -->
+          </div>
+        </div>
+
+        <!-- 角色库存 -->
+        <div class="inventory-section">
+          <h3>我的角色</h3>
+          <div id="character-inventory" class="character-list"></div>
+        </div>
+
+        <!-- 深渊挑战 -->
+        <div class="abyss-section">
+          <h3>深渊挑战</h3>
+          <div id="abyss-list" class="abyss-list"></div>
+        </div>
+        
+        <!-- 全部版本深渊buff - 已隐藏 -->
+        <div class="abyss-section" style="display: none;">
+          <h3>全部版本深渊buff</h3>
+          <div id="all-abyss-buffs" class="all-abyss-buffs"></div>
+        </div>
+
+        <!-- 版本进度 -->
+        <div class="version-progress">
+          <button id="next-version" class="primary-button" disabled>下一版本</button>
+          <div class="jump-buttons">
+            <button id="jump-to-3-1" class="secondary-button">跳转到3.1</button>
+            <button id="jump-to-3-2" class="secondary-button">跳转到3.2</button>
+            <button id="jump-to-3-3" class="secondary-button">跳转到3.3</button>
+            <button id="jump-to-3-4" class="secondary-button">跳转到3.4</button>
+            <button id="jump-to-3-5" class="secondary-button">跳转到3.5</button>
+            <button id="jump-to-3-6" class="secondary-button">跳转到3.6</button>
+            <button id="jump-to-3-7" class="secondary-button">跳转到3.7</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 深渊挑战界面 -->
+      <div id="abyss-screen" class="screen">
+        <h2 id="abyss-title"></h2>
+        <div id="abyss-buff"></div>
+        <div id="abyss-standard"></div>
+        <h3>选择出战角色 (1-4个)</h3>
+        <div id="abyss-character-select" class="character-list"></div>
+        <div id="selected-team" class="team-display"></div>
+        <button id="start-abyss" class="primary-button" disabled>开始挑战</button>
+        <button id="back-to-main" class="secondary-button">返回主界面</button>
+      </div>
+
+      <!-- 游戏结束界面 -->
+      <div id="end-screen" class="screen">
+        <h2>挑战成功</h2>
+        <div id="end-result"></div>
+        <button id="restart-button" class="primary-button">重新开始</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

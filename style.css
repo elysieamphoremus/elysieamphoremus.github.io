@@ -1,0 +1,1025 @@
+/* 全局样式 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Microsoft YaHei', sans-serif;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  color: #e0e0e0;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* 标题样式 */
+.title {
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 30px;
+  color: #fff;
+  text-shadow: 0 0 20px rgba(100, 149, 237, 0.8);
+  background: linear-gradient(45deg, #6495ed, #9370db);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  padding: 10px;
+}
+
+/* 屏幕切换 */
+.screen {  display: none;  animation: fadeIn 0.5s ease-in-out;}
+
+.screen.active {  display: block;}
+
+/* 确保在游戏开始前隐藏所有主界面的内容区域 */
+#main-screen:not(.active) .version-info,
+#main-screen:not(.active) .gacha-section,
+#main-screen:not(.active) .inventory-section,
+#main-screen:not(.active) .abyss-section,
+#main-screen:not(.active) .version-progress,
+#main-screen:not(.active) #warmTipsCard,
+#main-screen:not(.active) #allLeakerTipsCard {  display: none;}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 按钮样式 */
+button {
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  font-weight: bold;
+}
+
+.primary-button {
+  background: linear-gradient(45deg, #6495ed, #9370db);
+  color: white;
+  box-shadow: 0 4px 15px rgba(100, 149, 237, 0.4);
+}
+
+.primary-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(100, 149, 237, 0.6);
+}
+
+.primary-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.secondary-button {
+  display: none;
+}
+
+/* 深渊界面中的返回主界面按钮显示 */
+#abyss-screen .secondary-button {
+  display: inline-block;
+  background: rgba(100, 149, 237, 0.2);
+  border: 1px solid #6495ed;
+  color: #6495ed;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+.secondary-button:hover {
+  background: #555;
+}
+
+.pull-button {
+  margin: 5px;
+  background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+  color: white;
+  min-width: 100px;
+}
+
+.pull-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+}
+
+/* 开始界面 */
+#start-screen {
+  text-align: center;
+  padding: 50px 20px;
+}
+
+.story-intro {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  margin-bottom: 40px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* 主界面布局 */
+#main-screen {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+.version-info {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 15px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: center;
+}
+
+.version-progress {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.jump-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.jump-buttons .secondary-button {
+  padding: 8px 12px;
+  font-size: 0.9rem;
+}
+
+/* 专票显示样式 */
+#tickets-count {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #ffd700;
+  padding: 3px 8px;
+  background: rgba(255, 215, 0, 0.1);
+  border-radius: 4px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* 抽取区域 */
+.gacha-section,
+.inventory-section,
+.abyss-section {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.version-buff-container {
+  margin-bottom: 20px;
+  padding: 10px;
+  background: rgba(20, 20, 40, 0.5);
+  border-radius: 8px;
+  border-left: 3px solid #4a9eff;
+}
+
+.abyss-buff-card {
+  background: rgba(15, 15, 30, 0.6);
+  border-radius: 6px;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid rgba(100, 149, 237, 0.2);
+  transition: all 0.3s ease;
+}
+
+.abyss-buff-card:hover {
+  background: rgba(15, 15, 30, 0.8);
+  border-color: rgba(100, 149, 237, 0.5);
+  transform: translateX(5px);
+}
+
+.buff-item {
+  margin: 5px 0;
+  line-height: 1.4;
+}
+
+h3 {
+  color: #6495ed;
+  margin-bottom: 15px;
+  font-size: 1.4rem;
+}
+
+.h3 {
+  color: #6495ed;
+  margin-bottom: 15px;
+  font-size: 1.4rem;
+}
+
+.up-characters {
+  margin-bottom: 20px;
+}
+
+.gacha-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.pity-info {
+  background-color: rgba(255, 215, 0, 0.1);
+  border: 1px solid rgba(255, 215, 0, 0.3);
+  padding: 8px 12px;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  text-align: center;
+  font-weight: bold;
+  color: #ffd700;
+}
+
+/* 角色列表样式 */
+.character-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.character-card {
+  background: rgba(255, 255, 255, 0.08);
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.character-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(100, 149, 237, 0.3);
+  border-color: #6495ed;
+}
+
+.character-card.selected {
+  border-color: #ff6b6b;
+  background: rgba(255, 107, 107, 0.2);
+}
+
+.character-card.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: rgba(128, 128, 128, 0.1);
+  border-color: #666;
+}
+
+.character-card.disabled .character-name {
+  color: #999;
+}
+
+.character-name {
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #fff;
+}
+
+.character-info {
+  font-size: 0.9rem;
+  color: #ccc;
+  line-height: 1.4;
+}
+
+.star-rating {
+  color: #ffd700;
+  margin-top: 5px;
+}
+
+/* 抽取结果 */
+.pull-result {
+  min-height: 100px;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 15px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.pull-result-item {
+  margin: 5px 0;
+  padding: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 5px;
+  animation: slideIn 0.3s ease-out;
+}
+
+/* 角色获得提示的增强样式 */
+.pull-result-item.character-result {
+  margin: 5px 0;
+  padding: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 5px;
+  border: 2px solid rgba(255, 215, 0, 0.3);
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* 专票获得提示样式 */
+.tickets-notification {
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(135deg, #ffd700, #ffb300);
+  color: #000;
+  padding: 20px 30px;
+  border-radius: 15px;
+  text-align: center;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 10px 30px rgba(255, 215, 0, 0.5);
+  z-index: 1000;
+  animation: ticketAppear 0.6s ease-out, ticketDisappear 0.6s ease-in 1.4s forwards;
+}
+
+.tickets-amount {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.tickets-source {
+  font-size: 0.9rem;
+  font-weight: normal;
+  opacity: 0.9;
+}
+
+/* 赠送角色提示样式 */
+.character-gift-notification {
+  position: fixed;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(135deg, #9c27b0, #673ab7);
+  color: white;
+  padding: 25px 40px;
+  border-radius: 20px;
+  text-align: center;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 40px rgba(156, 39, 176, 0.7), 0 0 20px rgba(255, 255, 255, 0.3) inset;
+  z-index: 1001;
+  animation: giftAppear 0.8s ease-out, giftFloat 1.5s ease-in-out infinite, giftDisappear 0.8s ease-in 1.4s forwards;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+}
+
+.character-gift-name {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  letter-spacing: 1px;
+}
+
+.character-gift-source {
+  font-size: 1rem;
+  font-weight: normal;
+  opacity: 0.9;
+}
+
+/* 赠送角色动画效果 */
+@keyframes giftAppear {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.5);
+    box-shadow: 0 0 0 rgba(156, 39, 176, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+    box-shadow: 0 0 40px rgba(156, 39, 176, 0.7), 0 0 20px rgba(255, 255, 255, 0.3) inset;
+  }
+}
+
+@keyframes giftFloat {
+  0%, 100% {
+    transform: translate(-50%, -50%) translateY(0);
+  }
+  50% {
+    transform: translate(-50%, -50%) translateY(-10px);
+  }
+}
+
+@keyframes giftDisappear {
+  from {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.5);
+  }
+}
+
+@keyframes ticketAppear {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.5);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@keyframes ticketDisappear {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.5);
+  }
+}
+
+/* 深渊挑战列表 */
+.abyss-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.abyss-card {
+  background: rgba(255, 255, 255, 0.08);
+  padding: 15px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.abyss-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(100, 149, 237, 0.3);
+}
+
+.abyss-card.completed {
+  background: rgba(50, 205, 50, 0.2);
+  border-color: #32cd32;
+}
+
+.abyss-title {
+  font-weight: bold;
+  color: #6495ed;
+  margin-bottom: 5px;
+}
+
+.abyss-info {
+  font-size: 0.9rem;
+  color: #ccc;
+}
+
+/* 深渊buff信息样式 */
+.abyss-buff-info {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 0.9rem;
+  color: #a0c4ff;
+  line-height: 1.6;
+}
+
+/* 深渊挑战界面 */
+#abyss-screen {
+  text-align: center;
+  padding: 20px;
+}
+
+.team-display {
+  min-height: 80px;
+  margin: 15px 0;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.team-character {
+  display: inline-block;
+  margin: 5px;
+  padding: 5px 10px;
+  background: rgba(100, 149, 237, 0.3);
+  border-radius: 5px;
+}
+
+/* 游戏结束界面 */
+#end-screen {
+  text-align: center;
+  padding: 30px 20px;
+  animation: fadeIn 1s ease-out;
+}
+
+#end-result {
+  font-size: 1.2rem;
+  margin: 30px auto;
+  padding: 30px;
+  background: linear-gradient(135deg, rgba(100, 149, 237, 0.2), rgba(70, 130, 180, 0.1));
+  border-radius: 15px;
+  border: 2px solid rgba(100, 149, 237, 0.5);
+  max-width: 600px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  animation: victorySlideIn 1s ease-out;
+}
+
+/* 胜利标题样式 */
+.victory-header {
+  margin-bottom: 30px;
+}
+
+.victory-header h2 {
+  font-size: 2rem;
+  color: #6495ed;
+  margin-bottom: 15px;
+  text-shadow: 0 0 10px rgba(100, 149, 237, 0.5);
+  animation: pulse 2s infinite;
+}
+
+.final-rank {
+  font-size: 3rem;
+  font-weight: bold;
+  margin: 20px 0;
+  text-shadow: 0 0 20px currentColor;
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+/* 胜利统计样式 */
+.victory-stats {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-bottom: 30px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  color: #ccc;
+  margin-bottom: 5px;
+}
+
+.stat-value {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #6495ed;
+}
+
+/* 队伍展示样式 */
+.victory-team {
+  margin-bottom: 30px;
+}
+
+.victory-team h3 {
+  font-size: 1.5rem;
+  color: #fff;
+  margin-bottom: 20px;
+}
+
+.team-members {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+}
+
+.team-member {
+  background: rgba(255, 255, 255, 0.08);
+  padding: 15px;
+  border-radius: 10px;
+  border: 1px solid rgba(100, 149, 237, 0.3);
+  min-width: 150px;
+  transition: all 0.3s ease;
+  animation: teamMemberAppear 1.5s ease-out;
+}
+
+.team-member:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 20px rgba(100, 149, 237, 0.4);
+}
+
+.member-name {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.member-details {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-size: 0.9rem;
+  color: #ccc;
+}
+
+.power-buff {
+  color: #ff6b6b;
+  font-weight: bold;
+}
+
+/* 胜利消息样式 */
+.victory-message {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: 20px;
+}
+
+.victory-message p {
+  margin: 10px 0;
+  color: #fff;
+  line-height: 1.6;
+}
+
+/* 动画效果 */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes victorySlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-50px) scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes glow {
+  from {
+    text-shadow: 0 0 10px currentColor, 0 0 20px currentColor;
+  }
+  to {
+    text-shadow: 0 0 20px currentColor, 0 0 30px currentColor, 0 0 40px currentColor;
+  }
+}
+
+@keyframes teamMemberAppear {
+  from {
+    opacity: 0;
+    transform: scale(0.5) rotateY(90deg);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) rotateY(0deg);
+  }
+}
+
+/* 响应式设计 */
+@media (max-width: 767px) {
+  .victory-stats {
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .team-members {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+  
+  .team-member {
+    min-width: 0;
+    width: 100%;
+  }
+}
+
+/* 响应式设计 */
+@media (max-width: 767px) {
+  /* 手机端 - 我的角色和深渊挑战中的角色卡双排显示 */
+  .character-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 768px) {
+  #main-screen {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .version-info {
+    grid-column: 1 / -1;
+  }
+  
+  .gacha-section {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (min-width: 1024px) {
+  #main-screen {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  
+  .version-info,
+  .gacha-section {
+    grid-column: 1 / -1;
+  }
+}
+
+/* 动画效果增强 */
+.character-card,
+.abyss-card,
+button {
+  position: relative;
+  overflow: hidden;
+}
+
+.character-card::before,
+.abyss-card::before,
+button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: left 0.5s ease;
+}
+
+.character-card:hover::before,
+.abyss-card:hover::before,
+button:hover::before {
+  left: 100%;
+}
+
+/* 发光效果 */
+.glow {
+  box-shadow: 0 0 15px rgba(100, 149, 237, 0.6);
+}
+
+/* 稀有度颜色 */
+.rarity-4 {
+  border-color: #4169e1;
+}
+
+.rarity-5 {
+  border-color: #ffd700;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+}
+
+/* 加载动画 */
+.loading {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: #fff;
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* 提示信息 */
+.tip {
+  background: rgba(255, 215, 0, 0.2);
+  border: 1px solid #ffd700;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 10px 0;
+  color: #ffd700;
+}
+
+/* 按钮点击效果 */
+button:active {
+  transform: scale(0.95);
+}
+
+/* 选择效果优化 */
+input[type="checkbox"] {
+  display: none;
+}
+
+.checkbox-label {
+  display: inline-block;
+  padding: 5px 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.checkbox-label:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+input[type="checkbox"]:checked + .checkbox-label {
+  background: #6495ed;
+  color: white;
+}
+
+/* 温馨提示卡片样式 - 与角色卡片和深渊挑战卡片风格一致 */
+.tip-card {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 15px;
+  margin: 20px 0;
+  transition: all 0.3s ease;
+}
+
+.tip-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(100, 149, 237, 0.3);
+  border-color: #6495ed;
+}
+
+.tip-card-title {
+  color: #6495ed;
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tip-card-content {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 14px;
+  line-height: 1.6;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.tip-card-content p {
+  margin: 8px 0;
+  padding-left: 15px;
+  position: relative;
+}
+
+.tip-card-content p::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: #ff9e43;
+}
+
+.tip-card-button {
+  display: none;
+}
+
+/* 隐藏换一批按钮 */
+#refresh-warm-tips {
+  display: none;
+}
+
+.tip-card-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 158, 67, 0.3);
+}
+
+.tip-card-button:active {
+  transform: translateY(0);
+}
+
+/* 内鬼提示卡片样式 - 已隐藏 */
+.all-leaker-tips-card {
+  display: none;
+}
+
+/* 全部版本深渊buff卡片样式 - 已隐藏 */
+#all-abyss-buffs {
+  display: none;
+}
+
+.all-leaker-tips-title {
+  color: #ff4444;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  text-shadow: 0 0 10px rgba(255, 68, 68, 0.3);
+}
+
+#all-leaker-tips-content {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 14px;
+  line-height: 1.6;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.leaker-tips-section {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-left: 4px solid #ff4444;
+}
+
+.leaker-tips-section h4 {
+  color: #ff6666;
+  font-size: 16px;
+  margin: 0 0 10px 0;
+  font-weight: bold;
+}
+
+.leaker-tips-section p {
+  margin: 5px 0;
+  padding-left: 20px;
+  position: relative;
+}
+
+.leaker-tips-section p::before {
+  content: "💬";
+  position: absolute;
+  left: 0;
+  font-size: 12px;
+}
+
+/* 滚动条样式 */
+.tip-card-content::-webkit-scrollbar,
+#all-leaker-tips-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.tip-card-content::-webkit-scrollbar-track,
+#all-leaker-tips-content::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+}
+
+.tip-card-content::-webkit-scrollbar-thumb,
+#all-leaker-tips-content::-webkit-scrollbar-thumb {
+  background: rgba(255, 158, 67, 0.7);
+  border-radius: 3px;
+}
+
+.tip-card-content::-webkit-scrollbar-thumb:hover,
+#all-leaker-tips-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 158, 67, 0.9);
+}
